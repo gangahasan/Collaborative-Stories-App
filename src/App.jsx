@@ -10,6 +10,7 @@ import Register from "../src/pages/Register";
 const App = () => {
   return (
     <Container>
+      <h1>Welcome</h1>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
