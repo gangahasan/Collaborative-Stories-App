@@ -14,7 +14,7 @@ import { Box, Container, Heading } from '@chakra-ui/react'
               Welcome <span style={{ color: "blue" }}>{userdata?.email}</span>
             </Heading>
             <Box>
-              <StoryCard />
+              <StoryCard  user={userdata}/>
             </Box>
           </Container>
         ):(
