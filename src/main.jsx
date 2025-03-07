@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  // <StrictMode>
     <BrowserRouter>
       <ChakraProvider value={defaultSystem}>
         <Provider store={store}>
@@ -16,5 +16,5 @@ createRoot(document.getElementById("root")).render(
         </Provider>
       </ChakraProvider>
     </BrowserRouter>
-  </StrictMode>
+  // </StrictMode>
 );
