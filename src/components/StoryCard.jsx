@@ -4,7 +4,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Story from "./Story";
 
-const StoryCard = () => {
+const StoryCard = (props) => {
+  const user = props.user;
+  console.log(user,"user");
   const stories = useSelector((state) => state.story?.stories || []);
   const [contributeId, setContributeId] = useState(null);
   const [sentence, setSentence] = useState("");
@@ -25,6 +27,9 @@ const StoryCard = () => {
       setContributeId(null);
     }
   };
+  const getStatus = (storyContent) => {
+    return storyContent.length >= 10 ? "Completed" : "Ongoing";
+  };
 
   return (
     <Flex direction="column">
@@ -44,20 +49,30 @@ const StoryCard = () => {
             <Heading textAlign="center">CreatedBy: {story.createdBy}</Heading>
             <Heading color="green">Title: {story.title}</Heading>
 
-            {/* ✅ FIX: Replaced <Text> with <Box> to prevent hydration error */}
             <Box>
-              <Text as="span">Story: </Text>
-              <Story storyobj={story} />
+              <Heading size="2xl">Story: </Heading>
+
+              {/* Story component */}
+              <Story storyobj={story} user={user} />
             </Box>
 
-            <Text>Status: {story.status}</Text>
-
-            <Button
-              colorPalette="blue"
-              onClick={() => handleContribute(story.id)}
+            <Heading
+              size="xl"
+              color={
+                getStatus(story.storyContent) === "Completed" ? "green" : "red"
+              }
             >
-              Contribute
-            </Button>
+              Status: {getStatus(story.storyContent)}
+            </Heading>
+
+            {getStatus(story.storyContent) === "Ongoing" && (
+              <Button
+                colorPalette="blue"
+                onClick={() => handleContribute(story.id)}
+              >
+                Contribute
+              </Button>
+            )}
 
             {contributeId === story.id && (
               <Box>

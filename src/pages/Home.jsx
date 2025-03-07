@@ -5,7 +5,7 @@ import { Box, Container, Heading } from '@chakra-ui/react'
 
   const Home = () => {
       const userdata = useSelector((state)=>state.auth.user);
-      console.log(userdata,"data")
+      // console.log(userdata,"data")
     return (
       <Container>
         {userdata? (
